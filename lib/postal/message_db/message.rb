@@ -412,7 +412,7 @@ module Postal
       #
       def add_outgoing_headers
         headers = []
-        if domain
+        if domain and not Postal::Config.postal.disable_dkim?
           dkim = DKIMHeader.new(domain, raw_message)
           headers << dkim.dkim_header
         end
