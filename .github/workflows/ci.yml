@@ -52,10 +52,10 @@ jobs:
           registry: ${{ vars.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: docker-compose pull
+      - run: docker compose pull
         env:
           POSTAL_IMAGE: ${{ vars.REGISTRY_URL }}/postalserver/postal:ci-${{ github.sha }}
-      - run: docker-compose run postal sh -c 'bundle exec rspec'
+      - run: docker compose run postal sh -c 'bundle exec rspec'
         env:
           POSTAL_IMAGE: ${{ vars.REGISTRY_URL }}/postalserver/postal:ci-${{ github.sha }}
 
