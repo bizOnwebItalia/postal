@@ -66,6 +66,11 @@ module Postal
         default true
       end
 
+      boolean :disable_dkim do
+        description "Disables DKIM headers injection"
+        default false
+      end
+
       string :signing_key_path do
         description "Path to the private key used for signing"
         default "$config-file-root/signing.key"
