@@ -2,6 +2,13 @@
 
 This file contains all the latest changes and updates to Postal.
 
+## [3.0.1](https://github.com/bizOnwebItalia/postal/compare/3.0.0...3.0.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* Updated dkim ignore strategy ([7bdf3b1](https://github.com/bizOnwebItalia/postal/commit/7bdf3b1ba6d4e5cb5e3b24a3de8c1ac9c90b5b03))
+
 ## [3.0.0](https://github.com/bizOnwebItalia/postal/compare/v3.3.4...3.0.0) (2025-06-18)
 
 
