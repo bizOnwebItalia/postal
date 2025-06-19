@@ -2,6 +2,13 @@
 
 This file contains all the latest changes and updates to Postal.
 
+## [3.0.2](https://github.com/bizOnwebItalia/postal/compare/3.0.1...3.0.2) (2025-06-19)
+
+
+### Bug Fixes
+
+* Added configuration entry definition ([e13e3b4](https://github.com/bizOnwebItalia/postal/commit/e13e3b41c287eb9e687bd722c64ade773eee2f5c))
+
 ## [3.0.1](https://github.com/bizOnwebItalia/postal/compare/3.0.0...3.0.1) (2025-06-19)
 
 
