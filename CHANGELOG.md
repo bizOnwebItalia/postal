@@ -2,6 +2,13 @@
 
 This file contains all the latest changes and updates to Postal.
 
+## [3.2.1](https://github.com/bizOnwebItalia/postal/compare/3.2.0...3.2.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* Updated `use_message_from_as_header` flag behavior ([4a4631f](https://github.com/bizOnwebItalia/postal/commit/4a4631f441c22e079c2360aea62d8d59f45bf24e))
+
 ## [3.2.0](https://github.com/bizOnwebItalia/postal/compare/3.1.1...3.2.0) (2025-06-19)
 
 
