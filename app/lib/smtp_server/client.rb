@@ -471,7 +471,7 @@ module SMTPServer
         return format("552 Message too large (maximum size %dMB)", Postal::Config.smtp_server.max_message_size)
       end
 
-      if @headers["received"].grep(/by #{Postal::Config.postal.smtp_hostname}/).count > 4
+      if (not @headers["received"].nil?) and @headers["received"].grep(/by #{Postal::Config.postal.smtp_hostname}/).count > 4
         transaction_reset
         @state = :welcomed
         increment_error_count("loop-detected")
