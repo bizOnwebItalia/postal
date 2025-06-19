@@ -76,6 +76,11 @@ module Postal
         default false
       end
 
+      boolean :use_message_from_as_header do
+        description "Prevents postal from using the return path address as FROM header"
+        default false
+      end
+
       string :signing_key_path do
         description "Path to the private key used for signing"
         default "$config-file-root/signing.key"
