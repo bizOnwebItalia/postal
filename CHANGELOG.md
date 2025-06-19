@@ -2,6 +2,13 @@
 
 This file contains all the latest changes and updates to Postal.
 
+## [3.1.1](https://github.com/bizOnwebItalia/postal/compare/3.1.0...3.1.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* Fixed `anonymize_sender` behavior ([7186a8c](https://github.com/bizOnwebItalia/postal/commit/7186a8c15f402717e35e7f1637c83e00183e9004))
+
 ## [3.1.0](https://github.com/bizOnwebItalia/postal/compare/3.0.2...3.1.0) (2025-06-19)
 
 
