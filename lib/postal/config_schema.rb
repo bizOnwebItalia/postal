@@ -71,6 +71,11 @@ module Postal
         default false
       end
 
+      boolean :anonymize_sender do
+        description "Disables Received header passthrough breaking the SMTP delivery chain"
+        default false
+      end
+
       string :signing_key_path do
         description "Path to the private key used for signing"
         default "$config-file-root/signing.key"

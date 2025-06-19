@@ -177,7 +177,9 @@ class OutgoingMessagePrototype
           content: attachment[:data]
         }
       end
-      mail.header["Received"] = ReceivedHeader.generate(@server, @source_type, @ip, :http)
+      unless Postal::Config.postal.anonymize_sender?
+        mail.header["Received"] = ReceivedHeader.generate(@server, @source_type, @ip, :http)
+      end
       mail.message_id = "<#{@message_id}>"
       mail.to_s
     end

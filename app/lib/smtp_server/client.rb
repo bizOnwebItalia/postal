@@ -416,11 +416,13 @@ module SMTPServer
       @headers = {}
       @receiving_headers = true
 
-      received_header = ReceivedHeader.generate(@credential&.server, @helo_name, @ip_address, :smtp)
-                                      .force_encoding("BINARY")
+      unless Postal::Config.postal.anonymize_sender?
+        received_header = ReceivedHeader.generate(@credential&.server, @helo_name, @ip_address, :smtp)
+                                        .force_encoding("BINARY")
 
-      @data << "Received: #{received_header}\r\n"
-      @headers["received"] = [received_header]
+        @data << "Received: #{received_header}\r\n"
+        @headers["received"] = [received_header]
+      end
 
       handler = proc do |idata|
         if idata == "." && @cr_present && @previous_cr_present
