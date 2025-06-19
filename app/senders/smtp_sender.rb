@@ -146,9 +146,7 @@ class SMTPSender < BaseSender
     end
 
     if Postal::Config.postal.use_message_from_as_header?
-      # return message.mail
-      print(message.headers)
-      return message.headers['from']
+      return message.headers['sender']&.first&.decoded || message.headers['from']&.first&.decoded
     end
 
     "#{message.server.token}@#{Postal::Config.dns.return_path_domain}"
