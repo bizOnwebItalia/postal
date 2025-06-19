@@ -25,6 +25,7 @@ class DKIMHeader
   private
 
   def headers
+    return [] if Postal::Config.postal.disable_dkim?
     @headers ||= @raw_headers.to_s.gsub(/\r?\n\s/, " ").split(/\r?\n/)
   end
 
