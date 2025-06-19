@@ -126,6 +126,7 @@ jobs:
         with:
           push: true
           tags: |
+            ${{ vars.REGISTRY_URL }}/postalserver/postal:latest
             ${{ vars.REGISTRY_URL }}/postalserver/postal:stable
             ${{ vars.REGISTRY_URL }}/postalserver/postal:${{ needs.release-please.outputs.version }}
           cache-from: type=gha

@@ -18,6 +18,7 @@ class DKIMHeader
   end
 
   def dkim_header
+    return "" if Postal::Config.postal.disable_dkim?
     "DKIM-Signature: v=1; " + dkim_properties.join("\r\n\t") + signature.scan(/.{1,72}/).join("\r\n\t")
   end
 
