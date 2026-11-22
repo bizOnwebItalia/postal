@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
+gem "abbrev"
 gem "authie"
 gem "autoprefixer-rails"
 gem "bcrypt"
+gem "benchmark"
+gem "cgi"
 gem "chronic"
 gem "domain_name"
 gem "dotenv"
@@ -17,14 +20,18 @@ gem "jwt"
 gem "kaminari"
 gem "klogger-logger"
 gem "konfig-config", "~> 3.0"
+gem "logger"
 gem "mail"
+gem "mutex_m"
 gem "mysql2"
 gem "nifty-utils"
 gem "nilify_blanks"
 gem "nio4r"
+gem "ostruct"
 gem "prometheus-client"
 gem "puma"
-gem "rails", "= 7.0.8.1"
+gem "rackup"
+gem "rails", "~> 8.1.4", ">= 8.1.4.1"
 gem "resolv"
 gem "secure_headers"
 gem "sentry-rails"
@@ -46,13 +53,16 @@ group :development, :assets do
 end
 
 group :development do
-  gem "annotate"
-  gem "database_cleaner", require: false
-  gem "factory_bot_rails", require: false
-  gem "rspec", require: false
-  gem "rspec-rails", require: false
+  gem "annotaterb"
   gem "rubocop"
   gem "rubocop-rails"
+end
+
+group :test do
+  gem "database_cleaner-active_record"
+  gem "factory_bot_rails"
+  gem "rspec"
+  gem "rspec-rails"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"

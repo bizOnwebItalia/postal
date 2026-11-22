@@ -317,6 +317,105 @@ This file contains all the latest changes and updates to Postal.
 * rename database spec file ([b9edcf5](https://github.com/bizOnwebItalia/postal/commit/b9edcf5b7dda7f4976a9d3f90668bbdacea57350))
 * **smtp-sender:** add more tests for AUTH LOGIN ([22dcd49](https://github.com/bizOnwebItalia/postal/commit/22dcd4901f188915cf4b3c758c6f2fc637a4e1e3))
 
+## [3.5.0](https://github.com/postalserver/postal/compare/3.4.0...3.5.0) (2026-11-20)
+
+
+### Features
+
+* Add message priority per server ([#3672](https://github.com/postalserver/postal/issues/3672)) ([83b7c6e](https://github.com/postalserver/postal/commit/83b7c6e03001fa7dd10e1214dc9ce154f75a3f6f))
+
+
+### Bug Fixes
+
+* **message-db:** scrub invalid UTF-8 from subject and message id ([#3660](https://github.com/postalserver/postal/issues/3660)) ([e72e82f](https://github.com/postalserver/postal/commit/e72e82f85511f63c1b6bccf0071aa88b690917bb))
+* **smtp-server:** treat TLS client disconnects as client-gone, not errors ([#3604](https://github.com/postalserver/postal/issues/3604)) ([1531cdc](https://github.com/postalserver/postal/commit/1531cdc78c963fba446378bc6f136915c8ebfc7e))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump addressable from 2.8.6 to 2.9.1 ([b8f72ba](https://github.com/postalserver/postal/commit/b8f72ba0d6b5f762f39dad16ef5550b11da8c1ec))
+* **deps-dev:** bump omniauth from 2.1.2 to 2.2.0 ([19a4130](https://github.com/postalserver/postal/commit/19a4130e9df6582b4f186733069533c4c2562f97))
+* upgrade ruby to 3.4.13 ([#3673](https://github.com/postalserver/postal/issues/3673)) ([e7a631f](https://github.com/postalserver/postal/commit/e7a631f1bb31f93065d191b51eed8615f5ce931f))
+
+## [3.4.0](https://github.com/postalserver/postal/compare/3.3.7...3.4.0) (2026-11-16)
+
+
+### Features
+
+* add configurable Postal logger level defaulting to INFO ([#3626](https://github.com/postalserver/postal/issues/3626)) ([ced77a3](https://github.com/postalserver/postal/commit/ced77a3860c23779889aec8dacd2642f20d10cea))
+* **dkim:** make key size configurable and allow keys to be rotated ([d96eddb](https://github.com/postalserver/postal/commit/d96eddbadeda600595d6247486f9ceb8e99cbc15))
+
+
+### Bug Fixes
+
+* give each worker process a unique locker identity ([#3628](https://github.com/postalserver/postal/issues/3628)) ([3be663d](https://github.com/postalserver/postal/commit/3be663dc8931bd731516bafd6edff6b0fbd03df2))
+
+
+### Miscellaneous Chores
+
+* upgrade to rails 8.1.4 ([#3659](https://github.com/postalserver/postal/issues/3659)) ([ea23d92](https://github.com/postalserver/postal/commit/ea23d929cfe19f37245f7155a29717caebf0ae06))
+
+## [3.3.7](https://github.com/postalserver/postal/compare/3.3.6...3.3.7) (2026-06-03)
+
+
+### Bug Fixes
+
+* **http:** prevent SSRF in outbound webhook and HTTP endpoint requests ([11c9814](https://github.com/postalserver/postal/commit/11c9814474f956619da35e8385ef7fab9f304de0))
+* **message-db:** prevent SQL injection via condition keys (GHSA-x2hq-rfpg-3xr5) ([4314a6e](https://github.com/postalserver/postal/commit/4314a6ec1e2812daa67dd20effd1db1769c1f8e8))
+* **specs:** stub IPv6 support in address guard IPv6 literal spec ([029bfe0](https://github.com/postalserver/postal/commit/029bfe098d9b8c0b5cafc49eac33e767f5748cd3))
+
+
+### Miscellaneous Chores
+
+* **deps:** upgrade rack & rails ([0445e5c](https://github.com/postalserver/postal/commit/0445e5c509870dfe9c16366c53dee3fc02ad3904))
+* update security vulnerability reporting instructions ([8be1e27](https://github.com/postalserver/postal/commit/8be1e27fec489ab659ef5e909f705932028b1694))
+
+## [3.3.6](https://github.com/postalserver/postal/compare/3.3.5...3.3.6) (2026-04-28)
+
+
+### Bug Fixes
+
+* **messages:** sandbox rendered email HTML as extra XSS defence ([cad2aa6](https://github.com/postalserver/postal/commit/cad2aa6808519a3ff25215f09f4966d9fa3bb372))
+
+
+### Miscellaneous Chores
+
+* ignore node modules and yarn.lock ([b611d57](https://github.com/postalserver/postal/commit/b611d577af79b8e1e75b6d47fa04d1ba03e34eec))
+
+
+### Code Refactoring
+
+* **auth:** tighten return_to validation ([84f4e20](https://github.com/postalserver/postal/commit/84f4e20f05db2d11b0144f95960c956f8221e657))
+* **helpers:** escape interpolated values in select options ([9243524](https://github.com/postalserver/postal/commit/924352403553dcfcc569876ca76c219493fac9d6))
+* **tracking:** remove unused src image proxy ([dca7f90](https://github.com/postalserver/postal/commit/dca7f90b9046247c0d953567be35921167e79d87))
+
+## [3.3.5](https://github.com/postalserver/postal/compare/3.3.4...3.3.5) (2026-02-01)
+
+
+### Bug Fixes
+
+* **deliveries:** escape delivery details to prevent HTML injection ([11419f9](https://github.com/postalserver/postal/commit/11419f99140e13688a9613cab3ee03f8d3cbae45))
+* **health_server:** use rackup handler instead of rack handler ([7c47422](https://github.com/postalserver/postal/commit/7c47422c865e738c4d6af0fed1cca4405288341f))
+* oidc scopes are invalid when concatenated ([#3332](https://github.com/postalserver/postal/issues/3332)) ([9c5f96a](https://github.com/postalserver/postal/commit/9c5f96ae90cf06dcd5db776806865752f667bd95))
+* typo in process logging ([#3212](https://github.com/postalserver/postal/issues/3212)) ([b7e5232](https://github.com/postalserver/postal/commit/b7e5232e077b3c9b7a999dcb6676fba0ec61458e))
+* typo in the credentials page ([fd3c7cc](https://github.com/postalserver/postal/commit/fd3c7ccdf6dc4ee0a76c9523cbd735159e4b8000))
+* update url for v2 config ([#3225](https://github.com/postalserver/postal/issues/3225)) ([e00098b](https://github.com/postalserver/postal/commit/e00098b8003cf37f2708f536871b3ade377aed2d))
+
+
+### Documentation
+
+* **process.rb:** add help about time unit used by metric ([#3339](https://github.com/postalserver/postal/issues/3339)) ([f5325c4](https://github.com/postalserver/postal/commit/f5325c49ff1152ad53eaaec98717ad3412d379ae))
+
+
+### Miscellaneous Chores
+
+* **deps:** upgrade puma, net-imap and other deps ([c03c44b](https://github.com/postalserver/postal/commit/c03c44b442a29aa9881c1e1aae60bead9776a6b6))
+* **dockerfile:** reduce container size ([86de372](https://github.com/postalserver/postal/commit/86de372382bd62bdd5d1372254f8817b0360bd56))
+* remove version from docker-compose.yml ([c78000c](https://github.com/postalserver/postal/commit/c78000ca8f2998aa04648f465060768db6467de6))
+* upgrade resolv to 0.6.2 ([d00d978](https://github.com/postalserver/postal/commit/d00d978872a96369544303d08f6a9d11cdf56b62))
+* upgrade to rails 7.1 and ruby 3.4 ([#3457](https://github.com/postalserver/postal/issues/3457)) ([ab6d443](https://github.com/postalserver/postal/commit/ab6d4430baa33a05f1aa66e776cc2a5bcaa0ede8))
+* upgrade uri gem to 1.0.3 ([f193b8e](https://github.com/postalserver/postal/commit/f193b8e77fc096382ab7aaa6a2c29641b4cb12df))
+
 ## [3.3.4](https://github.com/postalserver/postal/compare/3.3.3...3.3.4) (2024-06-20)
 
 

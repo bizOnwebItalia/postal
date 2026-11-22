@@ -107,6 +107,14 @@ module Postal
         transform { |ip| IPAddr.new(ip) }
       end
 
+      string :allowed_request_destinations do
+        array
+        description "Hostnames or IP/CIDR ranges that outbound webhook and HTTP " \
+                    "endpoint requests are permitted to reach even when they resolve " \
+                    "to a private, loopback, link-local or otherwise reserved address. " \
+                    "All other such destinations are blocked to prevent SSRF."
+      end
+
       integer :queued_message_lock_stale_days do
         description "The number of days after which to consider a lock as stale. Messages with stale locks will be removed and not retried."
         default 1
@@ -149,6 +157,11 @@ module Postal
       integer :threads do
         description "The number of threads to execute within each worker"
         default 2
+      end
+
+      integer :minimum_priority do
+        description "The lowest server priority that this worker will send queued messages for"
+        default 0
       end
     end
 
@@ -232,6 +245,19 @@ module Postal
       boolean :enabled do
         description "Enable the Postal logger to log to STDOUT"
         default true
+      end
+
+      string :level do
+        description "The minimum log level for the Postal logger (debug, info, warn, error, fatal)"
+        default "INFO"
+        transform do |value|
+          normalized = value.to_s.strip.downcase
+          normalized = "info" if normalized.empty?
+          unless %w[debug info warn error fatal].include?(normalized)
+            raise ArgumentError, "logging.level must be one of: debug, info, warn, error, fatal (got #{value.inspect})"
+          end
+          normalized
+        end
       end
 
       boolean :highlighting_enabled do
@@ -357,6 +383,20 @@ module Postal
       string :dkim_identifier do
         description "The identifier to use for DKIM keys in DNS records"
         default "postal"
+      end
+
+      integer :dkim_key_size do
+        description "The size (in bits) of RSA key to generate for DKIM signing (one of 1024, 2048, 3072 or 4096). " \
+                    "Note that records for 2048-bit and larger keys exceed 255 characters and must be " \
+                    "published as a split (multi-string) TXT record."
+        default 2048
+        transform do |value|
+          unless value.nil? || [1024, 2048, 3072, 4096].include?(value)
+            raise Konfig::Error, "dns.dkim_key_size must be one of 1024, 2048, 3072 or 4096 (got #{value})"
+          end
+
+          value
+        end
       end
 
       string :domain_verify_prefix do

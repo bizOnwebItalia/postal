@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_11_205229) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_152111) do
   create_table "additional_route_endpoints", id: :integer, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "route_id"
     t.string "endpoint_type"
@@ -99,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_205229) do
     t.integer "owner_id"
     t.string "dkim_identifier_string"
     t.boolean "use_for_any"
+    t.text "pending_dkim_private_key"
+    t.string "pending_dkim_identifier_string"
     t.index ["server_id"], name: "index_domains_on_server_id"
     t.index ["uuid"], name: "index_domains_on_uuid", length: 8
   end
@@ -196,8 +198,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_205229) do
     t.integer "route_id"
     t.boolean "manual", default: false
     t.string "batch_key"
+    t.integer "priority", default: 50, null: false
     t.index ["domain"], name: "index_queued_messages_on_domain", length: 8
     t.index ["message_id"], name: "index_queued_messages_on_message_id"
+    t.index ["priority", "id"], name: "index_queued_messages_on_priority_and_id", order: { priority: :desc }
     t.index ["server_id"], name: "index_queued_messages_on_server_id"
   end
 
@@ -251,6 +255,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_205229) do
     t.string "suspension_reason"
     t.boolean "log_smtp_data", default: false
     t.boolean "privacy_mode", default: false
+    t.integer "priority", default: 50, null: false
     t.index ["organization_id"], name: "index_servers_on_organization_id"
     t.index ["permalink"], name: "index_servers_on_permalink", length: 6
     t.index ["token"], name: "index_servers_on_token", length: 6
@@ -379,5 +384,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_205229) do
     t.datetime "acquired_at", precision: nil
     t.index ["role"], name: "index_worker_roles_on_role", unique: true
   end
-
 end
